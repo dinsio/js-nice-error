@@ -17,6 +17,8 @@ const NiceError = function(message,options) {
     this.cause = (options && options.cause) ? options.cause : null
     // 错误栈
     let stackInfo = (new Error).stack
+    // 允许自定义 stack 传入
+    if (options && options.stack !== undefined) stackInfo = options.stack
     // 将默认错误信息替换为完整错误信息链条
     stackInfo = stackInfo.replace('Error:', this.fullMessage())
     // 优化代码文件路径的显示
